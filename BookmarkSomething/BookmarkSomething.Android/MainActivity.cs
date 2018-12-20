@@ -19,7 +19,7 @@ namespace BookmarkSomething.Droid
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
+            LoadApplication(new App() { TypeRegistration = new AndroidAutofacReg() });
         }
     }
 }

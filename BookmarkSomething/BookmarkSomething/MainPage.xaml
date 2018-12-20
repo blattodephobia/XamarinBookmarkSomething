@@ -1,13 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:BookmarkSomething"
-             xmlns:z="clr-namespace:BookmarkSomething.Extensions"
-             x:Class="BookmarkSomething.MainPage">
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="{z:LocalizedString}" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
-</ContentPage>
+<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:local="clr-namespace:BookmarkSomething"
+              xmlns:z="clr-namespace:BookmarkSomething.Extensions"
+              xmlns:viewModels="clr-namespace:BookmarkSomething.ViewModels;assembly=BookmarkSomething"
+              xmlns:models="clr-namespace:BookmarkSomething.Models;assembly=BookmarkSomething"
+              x:Class="BookmarkSomething.MainPage"
+              ItemsSource="{Binding Names}">
+    <CarouselPage.BindingContext>
+        <viewModels:MainViewModel x:Name="MainViewModel">
+        </viewModels:MainViewModel>
+    </CarouselPage.BindingContext>
+
+    <CarouselPage.ItemTemplate>
+        <DataTemplate>
+            <ContentPage>
+                <StackLayout>
+                    <Label Text="{Binding}" 
+                           HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand" />
+                    <Button Text="Like!"
+                            Command="{Binding LikeCommand, Source={x:Reference Name=MainViewModel}}"
+                            CommandParameter="{Binding}"/>
+                </StackLayout>
+            </ContentPage>
+        </DataTemplate>
+    </CarouselPage.ItemTemplate>
+</CarouselPage>

@@ -1,21 +1,28 @@
 ﻿using System;
+using Autofac;
+using BookmarkSomething.Models;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace BookmarkSomething
 {
     public partial class App : Application
     {
+        private static IContainer _container;
+        private static readonly ContainerBuilder Builder = new ContainerBuilder();
+
+        public TypeRegistration TypeRegistration { get; set; }
+
         public App()
         {
             InitializeComponent();
-
             MainPage = new MainPage();
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            DependencyResolver.ResolveUsing(TypeRegistration.GetResolver());
         }
 
         protected override void OnSleep()

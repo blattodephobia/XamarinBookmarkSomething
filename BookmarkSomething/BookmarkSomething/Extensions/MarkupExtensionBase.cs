@@ -5,7 +5,7 @@ using Xamarin.Forms.Xaml;
 
 namespace BookmarkSomething.Extensions
 {
-    public class MarkupExtensionBase<T> : IMarkupExtension, IMarkupExtension<T>
+    public class MarkupExtensionBase<T> : IMarkupExtension<T>
     {
         public virtual T ProvideValue(IServiceProvider serviceProvider)
         {
