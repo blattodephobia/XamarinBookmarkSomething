@@ -17,7 +17,6 @@ namespace BookmarkSomething
             {
                 if (_container == null)
                 {
-                    RegisterBookmarkPersistence();
                     _container = Builder.Build();
                 }
 
@@ -37,7 +36,12 @@ namespace BookmarkSomething
 
         public override Func<Type, object> GetResolver()
         {
-            return type => Container.IsRegistered(type) ? Container.Resolve(type) : null;
+            RegisterBookmarkPersistence();
+
+            return type =>
+            {
+                return Container.IsRegistered(type) ? Container.Resolve(type) : null;
+            };
         }
     }
 }

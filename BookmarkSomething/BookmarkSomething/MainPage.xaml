@@ -19,6 +19,7 @@
                     <Label Text="{Binding}" 
                            HorizontalOptions="Center"
                            VerticalOptions="CenterAndExpand" />
+                    <local:Chart></local:Chart>
                     <Button Text="Like!"
                             Command="{Binding LikeCommand, Source={x:Reference Name=MainViewModel}}"
                             CommandParameter="{Binding}"/>

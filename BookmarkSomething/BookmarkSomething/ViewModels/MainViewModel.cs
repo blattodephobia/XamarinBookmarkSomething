@@ -18,7 +18,7 @@ namespace BookmarkSomething.ViewModels
         public ObservableCollection<string> Names { get; } = new ObservableCollection<string>() { "Anna", "Beloslava", "Veneta" };
 
         public MainViewModel() :
-            this(DependencyService.Resolve<IPersistBookmark>())
+            this(DependencyService.Get<IPersistBookmark>())
         {
         }
 

@@ -11,18 +11,16 @@ namespace BookmarkSomething
     {
         private static IContainer _container;
         private static readonly ContainerBuilder Builder = new ContainerBuilder();
-
-        public TypeRegistration TypeRegistration { get; set; }
-
-        public App()
+        
+        public App(TypeRegistration registration)
         {
+            DependencyResolver.ResolveUsing(registration.GetResolver());
             InitializeComponent();
             MainPage = new MainPage();
         }
 
         protected override void OnStart()
         {
-            DependencyResolver.ResolveUsing(TypeRegistration.GetResolver());
         }
 
         protected override void OnSleep()
